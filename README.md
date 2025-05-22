@@ -35,6 +35,7 @@ Check which distribution of ROS2 is currently installed:
 printenv | grep ROS_DISTRO # Correct Output: ROS_DISTRO=humble
 ```
 
+### Test ROS2 Network
 Open two bash terminals. In shell #1 run:
 ```
 ros2 run demo_nodes_cpp talker
@@ -46,3 +47,15 @@ ros2 run demo_nodes_cpp listener
 ```
 
 Congratulations! You now have a complete ROS2 Environment to develop projects with.
+
+## Exit and Remove Container
+To stop and remove the Docker container run:
+> **Note**: Ensure you are not in a container shell. To exit one press `CTL+D` or type `exit`.
+```
+docker compose down
+```
+
+**Optional**: If you want to remove all data related to this Docker project run:
+```
+docker compose down --rmi all --volumes --remove-orphans
+```
