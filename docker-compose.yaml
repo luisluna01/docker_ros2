@@ -1,5 +1,5 @@
 services:
-  rosd_s:
+  ros2_base:
     image: ros2_i
     container_name: ros2_c
     build:

@@ -1,4 +1,4 @@
-FROM ros:humble-ros-base-jammy
+FROM osrf/ros:humble-desktop-jammy
 
 SHELL ["/bin/bash", "-c"]
 
@@ -10,8 +10,6 @@ ENV ROS_DISTRO=humble
 RUN apt update && apt upgrade -y \
     && apt install -y \
     apt-utils \
-    git \
-    curl \
     nano \
     vim \
     tmux \
@@ -19,17 +17,7 @@ RUN apt update && apt upgrade -y \
     python3-pip \
     python-is-python3 \
     # install dependencies for robofleet
-    libqt5websockets5-dev \
-    # remove qt5-default not found error
-    qtbase5-dev \
-    qtchooser \
-    qt5-qmake \
-    qtbase5-dev-tools
-
-# install full ros package
-RUN apt update && apt upgrade -y \
-    && apt install -y \
-    ros-${ROS_DISTRO}-desktop-full
+    libqt5websockets5-dev
 
 # install ros packages
 # see ../docs/installing_ros_packages.md for alternatives
@@ -42,13 +30,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
     ros-${ROS_DISTRO}-ros2-controllers \
     ros-${ROS_DISTRO}-moveit-msgs \
     ros-${ROS_DISTRO}-nav2-msgs \
-    # All URDF related packages
-    ros-${ROS_DISTRO}-urdf* \
     # Package essential for realsense ROS integration
     ros-${ROS_DISTRO}-realsense2-* \
     && rm -rf /var/lib/apt/lists/
 
-RUN rosdep update
+# Update workspace
+RUN apt update && apt upgrade -y \
+    && rosdep update
 
 # switch to home dir
 WORKDIR /root/ros2_ws
