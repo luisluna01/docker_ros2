@@ -5,6 +5,10 @@ SHELL ["/bin/bash", "-c"]
 # set the ros version
 ENV ROS_DISTRO=humble
 
+# set prompt tag
+ARG PROMPT_TAG="ros2"
+ENV PROMPT_TAG=${PROMPT_TAG}
+
 # install some useful packages and upgrade existing ones
 #   -y so skips interactive terminal to reduce error
 RUN apt update && apt upgrade -y \
@@ -44,8 +48,8 @@ WORKDIR /root/ros2_ws
 # setup .bashrc
 SHELL ["/bin/bash", "-l", "-c"]
 #   # set the bash prompt colors
-RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' "/root/.bashrc" \
-    && sed -i 's/01;32m/01;36m/g; s/01;34m/01;35m/g' "/root/.bashrc" \
+RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc \
+    && echo 'export PS1="\[\033[01;36m\][\${PROMPT_TAG}] \[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\[\033[00m\]\$ "' >> /root/.bashrc \
     # source ros setup.bash
     && echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
     && echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.profile \
