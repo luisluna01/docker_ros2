@@ -1,2 +1,48 @@
-Docker template based on Corrie Vance's Workshop found here:
-https://github.com/ut-texas-robotics/docker_workshop
+# ROS2 Humble Docker Image
+This repo contains the Docker files to set up a an environment with ROS2 Humble in Ubuntu Jammy thorugh a Docker container for ROS2 projects. There are helpful packages included for ROS2 software development and testing. This environment currently only works on devices with Nvidia GPU's.
+
+This template based on this [Docker Workshop](https://github.com/ut-texas-robotics/docker_workshop).
+
+## Installation
+Clone the repo in your desired directory:
+```
+git clone git@github.com:luisluna01/docker_ros2.git
+cd docker_ros2/
+```
+
+## Build and Run
+Build the Docker image:
+```
+docker compose build
+```
+
+Start a container:
+```
+docker compose up -d
+```
+
+Open a bash terminal in the container:
+```
+docker exec -ti ros2_c bash
+```
+
+## Test
+This section explains how to test the ROS2 Humble environment is set up correcly.
+
+
+Check which distribution of ROS2 is currently installed:
+```
+printenv | grep ROS_DISTRO # Correct Output: ROS_DISTRO=humble
+```
+
+Open two bash terminals. In shell #1 run:
+```
+ros2 run demo_nodes_cpp talker
+```
+
+In shell #2 run:
+```
+ros2 run demo_nodes_cpp listener
+```
+
+Congratulations! You now have a complete ROS2 Environment to develop projects with.
