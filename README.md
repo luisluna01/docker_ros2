@@ -3,11 +3,15 @@ This repo contains the Docker files to set up a an environment with ROS2 Humble 
 
 This template based on this [Docker Workshop](https://github.com/ut-texas-robotics/docker_workshop).
 
-## Installation
+## Installation and Setup
 Clone the repo in your desired directory:
 ```
 git clone git@github.com:luisluna01/docker_ros2.git
 cd docker_ros2/
+```
+**Optional:** You can grant the user `root` acess to the X server (the graphical display system) for local connections to display GUI windows (e.g.,running `rviz`)
+```
+xhost +local:root
 ```
 
 ## Build and Run
