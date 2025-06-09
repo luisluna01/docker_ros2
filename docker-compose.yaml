@@ -24,8 +24,8 @@ services:
     # this is set bc of errors with RVIZ being denied dbus comm w/ host
       - apparmor:unconfined
     volumes:
-      # mount host directories to the container for persistent storage
-      - .:/root/ros2_ws
+      # mount parent host directory to the container for persistent storage
+      - ..:/root/ros2_ws
       # mount the X11 socket to enable graphics display
       - /tmp/.X11-unix:/tmp/.X11-unix
       # add the .Xauthority file to use ssh X11 forwarding - for permissions on a server
