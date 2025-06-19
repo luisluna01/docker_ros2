@@ -37,7 +37,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
     # Package essential for realsense ROS integration
     ros-${ROS_DISTRO}-realsense2-* \
     # Cyclone DDS
-    ros-humble-rmw-cyclonedds-cpp \
+    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/
 
 # Update workspace
