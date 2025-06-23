@@ -9,6 +9,9 @@ ENV ROS_DISTRO=humble
 ARG PROMPT_TAG="ros2"
 ENV PROMPT_TAG=${PROMPT_TAG}
 
+# set ros2 workspace
+ARG ROS_WS=ros2_ws
+
 # install some useful packages and upgrade existing ones
 #   -y so skips interactive terminal to reduce error
 RUN apt update && apt upgrade -y \
@@ -45,7 +48,7 @@ RUN apt update && apt upgrade -y \
     && rosdep update
 
 # switch to home dir
-WORKDIR /root/ros2_ws
+WORKDIR /root/${ROS_WS}
 
 # setup .bashrc
 SHELL ["/bin/bash", "-l", "-c"]
@@ -56,7 +59,6 @@ RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc \
     && echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
     # add colcon_cd functionality
     && echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc \
-    && echo "export _colcon_cd_root=/opt/ros/${ROS_DISTRO}/" >> ~/.bashrc \
     # setup colcon tab completion
     && echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc \
     # add a package to the ROS_PACKAGE_PATH
