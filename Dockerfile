@@ -24,7 +24,9 @@ RUN apt update && apt upgrade -y \
     python3-pip \
     python-is-python3 \
     # install dependencies for robofleet
-    libqt5websockets5-dev
+    libqt5websockets5-dev \
+    # colcon-clean tool
+    && python3 -m pip install colcon-clean
 
 # install ros packages
 # see ../docs/installing_ros_packages.md for alternatives
