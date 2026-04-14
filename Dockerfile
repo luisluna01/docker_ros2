@@ -63,9 +63,6 @@ RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc \
     && echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc \
     # setup colcon tab completion
     && echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc \
-    # add a package to the ROS_PACKAGE_PATH
-    echo "export ROS_PACKAGE_PATH=\$ROS_PACKAGE_PATH:/root/amrl_msgs" >> ~/.bashrc \
-    && echo "export ROS_PACKAGE_PATH=\$ROS_PACKAGE_PATH:/root/amrl_msgs" >> ~/.profile
 
 # copy the entrypoint into the image
 COPY ./entrypoint.sh /entrypoint.sh
