@@ -20,6 +20,9 @@ services:
       - CYCLONEDDS_URI=file:///root/.ros/cyclonedds.xml
       # use cyclonedds as ros middleware
       - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    env_file:
+      # set environment variables via file
+      - robot.env
     security_opt:
     # this is set bc of errors with RVIZ being denied dbus comm w/ host
       - apparmor:unconfined
@@ -31,7 +34,7 @@ services:
       # add the .Xauthority file to use ssh X11 forwarding - for permissions on a server
       - ${HOME}/.Xauthority:/root/.Xauthority:rw
       # mount cyclondds file
-      - ./cyclonedds.xml:/root/.ros/cyclonedds.xml
+      - ${HOME}/.ros/cyclonedds.xml:/root/.ros/cyclonedds.xml
     # give the container access to the host's network
     network_mode: host
     # enable stdin and tty to allow the user to run bash interactively
