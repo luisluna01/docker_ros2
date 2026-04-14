@@ -1,5 +1,5 @@
 # ROS2 Humble Docker Image
-This repo contains the Docker files to set up a an environment with ROS2 Humble in Ubuntu Jammy thorugh a Docker container for ROS2 projects. There are helpful packages included for ROS2 software development and testing. This environment currently only works on devices with Nvidia GPU's.
+This repo contains the Docker files to set up a an environment with ROS2 Humble in Ubuntu Jammy thorugh a Docker container for ROS2 projects. There are helpful packages included for ROS2 software development and testing. This environment currently only works on devices with Nvidia GPUs.
 
 This template based on this [Docker Workshop](https://github.com/ut-texas-robotics/docker_workshop).
 
